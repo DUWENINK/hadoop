@@ -1,0 +1,65 @@
+services:
+  namenode:
+    image: apache/hadoop:3
+    hostname: namenode
+    container_name: namenode
+    command: bash -c "hdfs namenode -format && hdfs namenode"
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    volumes:
+      - ./hadoop_data/namenode:/hadoop/dfs/name
+      - ./config:/opt/hadoop/etc/hadoop
+    environment:
+      - HADOOP_USER_NAME=root
+      - HDFS_NAMENODE_USER=root
+      - HDFS_DATANODE_USER=root
+      - HDFS_SECONDARYNAMENODE_USER=root
+      - HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
+    user: "0"
+      
+  datanode1:
+    image: apache/hadoop:3
+    hostname: datanode1
+    container_name: datanode1
+    command: ["hdfs", "datanode"]
+    volumes:
+      - ./hadoop_data/datanode:/hadoop/dfs/data
+      - ./config:/opt/hadoop/etc/hadoop
+    environment:
+      - HADOOP_USER_NAME=root
+      - HDFS_NAMENODE_USER=root
+      - HDFS_DATANODE_USER=root
+      - HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
+    user: "0"
+    depends_on:
+      - namenode
+
+  resourcemanager:
+    image: apache/hadoop:3
+    hostname: resourcemanager
+    container_name: resourcemanager
+    command: ["yarn", "resourcemanager"]
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./config:/opt/hadoop/etc/hadoop
+    depends_on:
+      - namenode
+      - datanode1
+
+  nodemanager:
+    image: apache/hadoop:3
+    hostname: nodemanager
+    container_name: nodemanager
+    command: ["yarn", "nodemanager"]
+    volumes:
+      - ./config:/opt/hadoop/etc/hadoop
+    depends_on:
+      - namenode
+      - datanode1
+      - resourcemanager
+
+volumes:
+  hadoop_namenode:
+  hadoop_datanode:
