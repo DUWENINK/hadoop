@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- MySQL MetaStore连接配置 -->
+    <property>
+        <name>javax.jdo.option.ConnectionURL</name>
+        <value>jdbc:mysql://mysql:3306/metastore</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionDriverName</name>
+        <value>com.mysql.cj.jdbc.Driver</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionUserName</name>
+        <value>hive</value>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionPassword</name>
+        <value>hive</value>
+    </property>
+
+    <!-- Hive Metastore配置 -->
+    <property>
+        <name>hive.metastore.warehouse.dir</name>
+        <value>/user/hive/warehouse</value>
+    </property>
+    <property>
+        <name>hive.metastore.uris</name>
+        <value>thrift://hive-metastore:9083</value>
+    </property>
+    
+    <!-- 权限配置 -->
+    <property>
+        <name>hive.metastore.event.db.notification.api.auth</name>
+        <value>false</value>
+    </property>
+    <property>
+        <name>hive.server2.enable.doAs</name>
+        <value>false</value>
+    </property>
+    
+    <!-- 执行引擎配置 -->
+    <property>
+        <name>hive.execution.engine</name>
+        <value>mr</value>
+    </property>
+    
+    <!-- 其他优化配置 -->
+    <property>
+        <name>hive.optimize.reducededuplication</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>hive.optimize.reducededuplication.min.reducer</name>
+        <value>4</value>
+    </property>
+</configuration>
