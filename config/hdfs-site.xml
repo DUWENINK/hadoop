@@ -13,4 +13,36 @@
         <name>dfs.replication</name>
         <value>1</value>
     </property>
+    <property>
+        <name>dfs.block.size</name>
+        <value>67108864</value>
+    </property>
+    <property>
+        <name>dfs.datanode.du.reserved</name>
+        <value>1073741824</value>
+    </property>
+    <property>
+        <name>dfs.namenode.checkpoint.period</name>
+        <value>3600</value>
+    </property>
+    <property>
+        <name>dfs.namenode.checkpoint.txns</name>
+        <value>1000000</value>
+    </property>
+    <property>
+        <name>dfs.namenode.checkpoint.max-retries</name>
+        <value>3</value>
+    </property>
+    <property>
+        <name>dfs.datanode.fsdataset.volume.choosing.policy</name>
+        <value>AvailableSpaceVolumeChoosingPolicy</value>
+    </property>
+    <property>
+        <name>dfs.datanode.available-space-volume-choosing-policy.balanced-space-preference-fraction</name>
+        <value>0.75f</value>
+    </property>
+    <property>
+        <name>dfs.datanode.available-space-volume-choosing-policy.balanced-space-threshold</name>
+        <value>10737418240</value>
+    </property>
 </configuration>
