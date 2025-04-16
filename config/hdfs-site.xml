@@ -22,6 +22,14 @@
         <value>1073741824</value>
     </property>
     <property>
+        <name>dfs.datanode.max.data.size</name>
+        <value>10737418240</value>
+    </property>
+    <property>
+        <name>dfs.namenode.max.data.size</name>
+        <value>5368709120</value>
+    </property>
+    <property>
         <name>dfs.namenode.checkpoint.period</name>
         <value>3600</value>
     </property>
