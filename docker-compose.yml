@@ -3,7 +3,7 @@ services:
     image: apache/hadoop:3
     hostname: namenode
     container_name: namenode
-    command: bash -c "hdfs namenode -format && hdfs namenode"
+    command: bash -c "echo 'Y' | hdfs namenode -format && hdfs namenode"
     ports:
       - "9870:9870"
       - "9000:9000"
@@ -34,7 +34,7 @@ services:
     image: apache/hadoop:3
     hostname: datanode1
     container_name: datanode1
-    command: ["hdfs", "datanode"]
+    command: bash -c "rm -rf /hadoop/dfs/data/* && hdfs datanode"
     volumes:
       - ./hadoop_data/datanode:/hadoop/dfs/data
       - ./config:/opt/hadoop/etc/hadoop
