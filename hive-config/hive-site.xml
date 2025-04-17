@@ -60,7 +60,7 @@
     <!-- 执行引擎配置 -->
     <property>
         <name>hive.execution.engine</name>
-        <value>mr</value>
+        <value>spark</value>
     </property>
     
     <!-- 其他优化配置 -->
